@@ -7,20 +7,21 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      monsters: [
-        {
-          name: 'Linda',
-          id: "123asd"
-        },
-        {
-          name: 'Frank',
-          id: "123szxc"
-        },
-        {
-          name: 'Jacky',
-          id: "a213asc"
-        }]
+      monsters: [],
     };
+  }
+
+  // This runs the first time the component gets placed into the DOM, it only happens once
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(users => this.setState(() => {
+        return { monsters: users }
+      },
+        () => {
+          console.log(this.state)
+        }
+      ));
   }
 
   render() {
