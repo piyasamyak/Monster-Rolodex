@@ -20,9 +20,20 @@ class App extends Component {
           <p>
             Hi {this.state.name}, I work at {this.state.company}!
           </p>
-          <button onClick={() => {
-            this.setState({ name: 'Aastha', company: 'CARE' });
-          }}>Change Name</button>
+          <button
+            onClick={() => {
+              this.setState(
+                () => {
+                  return {
+                    name: 'Aastha', company: 'CARE',
+                  };
+                },
+                () => {
+                  console.log(this.state);
+                }
+              );
+            }}
+          >Change Name</button>
         </header>
       </div>
     )
